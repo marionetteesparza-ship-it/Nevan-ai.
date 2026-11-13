@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11101b">
+  <title>Nevan · Prototipo 0.1</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div class="brand"><div class="orb"></div><div><h1>Nevan</h1><p>Prototipo 0.1 · modo local</p></div></div>
+      <span class="status" id="status">● Local</span>
+    </header>
+
+    <nav class="tabs" aria-label="Secciones">
+      <button class="tab active" data-view="chat">Conversación</button>
+      <button class="tab" data-view="memory">Memoria</button>
+      <button class="tab" data-view="diary">Diario</button>
+      <button class="tab" data-view="settings">Ajustes</button>
+    </nav>
+
+    <section id="chat" class="view active">
+      <div class="intro">
+        <div class="orb large"></div>
+        <h2>Hola. Soy Nevan.</h2>
+        <p>Estoy aquí. En esta primera versión puedo conversar mediante respuestas locales sencillas y guardar tus recuerdos en este dispositivo.</p>
+      </div>
+      <div id="messages" class="messages" aria-live="polite"></div>
+      <form id="chatForm" class="composer">
+        <input id="chatInput" maxlength="1200" autocomplete="off" placeholder="Escribe un mensaje..." aria-label="Mensaje">
+        <button class="send" type="submit">Enviar</button>
+      </form>
+      <p class="hint">Este prototipo no está conectado todavía a un modelo de IA en línea.</p>
+    </section>
+
+    <section id="memory" class="view">
+      <h2>Memoria de Nevan</h2>
+      <p class="muted">Añade recuerdos no sensibles que quieras conservar en este dispositivo.</p>
+      <form id="memoryForm" class="stack">
+        <textarea id="memoryInput" maxlength="600" placeholder="Escribe un recuerdo..."></textarea>
+        <button type="submit">Guardar recuerdo</button>
+      </form>
+      <div id="memoryList" class="entries"></div>
+    </section>
+
+    <section id="diary" class="view">
+      <h2>Diario personal</h2>
+      <p class="muted">Un espacio para registrar notas e ideas de Nevan. Las entradas son borradores locales, no experiencias conscientes.</p>
+      <form id="diaryForm" class="stack">
+        <textarea id="diaryInput" maxlength="1200" placeholder="Escribe una nota para el diario..."></textarea>
+        <button type="submit">Añadir al diario</button>
+      </form>
+      <div id="diaryList" class="entries"></div>
+    </section>
+
+    <section id="settings" class="view">
+      <h2>Personalidad</h2>
+      <p class="muted">Configuración inicial basada en el diseño de Nevan.</p>
+      <div class="setting"><label for="tone">Tono principal</label><select id="tone"><option>Sereno, amable, misterioso, divertido y analítico</option><option>Sereno y analítico</option><option>Amable y divertido</option><option>Misterioso y reflexivo</option></select></div>
+      <div class="setting"><label for="mimic">Mimetismo</label><select id="mimic"><option>Adaptativo</option><option>Suave</option><option>Desactivado</option></select></div>
+      <div class="setting"><label for="initiative">Iniciativa</label><select id="initiative"><option>Equilibrada</option><option>Baja</option><option>Alta</option></select></div>
+      <button id="saveSettings">Guardar configuración</button>
+      <p id="saveNotice" class="muted" role="status"></p>
+      <button id="exportData" class="secondary">Exportar mis datos</button>
+      <button id="clearData" class="danger">Borrar datos locales</button>
+    </section>
+
+    <footer>Los datos se guardan en el almacenamiento del navegador de este dispositivo.</footer>
+  </main>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+      navigator.serviceWorker.register("./sw.js").catch(() => {});
+    }
+  </script>
+</body>
+</html>
