@@ -1,0 +1,10 @@
+{
+  "name": "Nevan AI",
+  "short_name": "Nevan",
+  "description": "Prototipo independiente de Nevan",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0d0c14",
+  "theme_color": "#11101b",
+  "lang": "es"
+}
